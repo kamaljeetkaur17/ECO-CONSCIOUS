@@ -46,15 +46,13 @@
 
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
 const db = require("../config/db"); // MySQL connection
-
-dotenv.config();
+require("dotenv").config();
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 
-router.get("/verify", async (req, res) => {
+router.get("/", async (req, res) => {
   const { token } = req.query;
 
   if (!token) {
@@ -80,7 +78,7 @@ router.get("/verify", async (req, res) => {
         <div style="font-family: Arial, sans-serif; text-align: center;">
           <h2>Email is already verified.</h2>
           <p>You can now log in.</p>
-          <a href="http://localhost:3000/login" style="padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Login Now</a>
+          <a href="http://localhost:5173/login" style="padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Login Now</a>
         </div>
       `);
     }
@@ -92,7 +90,7 @@ router.get("/verify", async (req, res) => {
       <div style="font-family: Arial, sans-serif; text-align: center;">
         <h2>🎉 Email Verified Successfully!</h2>
         <p>You can now log in.</p>
-        <a href="http://localhost:3000/login" style="padding: 10px 15px; background: #28a745; color: white; text-decoration: none; border-radius: 5px;">Login Now</a>
+        <a href="http://localhost:5173/login" style="padding: 10px 15px; background: #28a745; color: white; text-decoration: none; border-radius: 5px;">Login Now</a>
       </div>
     `);
   } catch (error) {

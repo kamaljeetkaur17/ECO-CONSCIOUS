@@ -122,7 +122,7 @@ router.post("/", validateSignup, hashPassword, async (req, res) => {
 
     // Generate email verification token (valid for 1 hour)
     const verificationToken = jwt.sign({ email }, JWT_SECRET, { expiresIn: "1h" });
-    const verificationUrl = `${BASE_URL}/verify?token=${verificationToken}`;
+    const verificationUrl = `${BASE_URL}/api/verify?token=${verificationToken}`;
 
     // Send verification email
     await transporter.sendMail({
